@@ -96,19 +96,13 @@ def main(source_data_repo, source_file_name, target_data_repo, target_file_name,
 
 if __name__ == "__main__":
     import os
-    # data_repo = "/data/nfsdata/nlp/datasets/sequence_labeling/CN_NER/OntoNote4NER"
-    # data_repo = "/data/nfsdata2/xiaoya/data_repo/msra_ner"
-    # data_repo = "/data/nfsdata2/xiaoya/data_repo/query_ner/eng_onto"
     data_repo = "/data/nfsdata/data/yuxian/datasets/genia"
-    # source_file_name = "test.ner"
-    # prefix = "test"
 
     for prefix in ["train", "dev", "test"]:
-        # source_file_name = f"{prefix}.char.bmes"
         source_file_name = f"{prefix}.ner"
         target_file_name = f"query_ner.{prefix}"
 
-        target_data_repo = "/data/nfsdata2/xiaoya/data_repo/query_ner/genia_ner"
+        target_data_repo = "/data/data_repo/genia_ner"
         os.makedirs(target_data_repo, exist_ok=True)
         dataset_sign = "genia_ner"
         main(data_repo, source_file_name, target_data_repo, target_file_name, dataset_sign=dataset_sign,

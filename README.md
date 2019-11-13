@@ -1,7 +1,7 @@
 # A Unified MRC Framework for Named Entity Recognition 
 The repository contains the code of the recent research advance in [Shannon.AI](http://www.shannonai.com). 
 
-**Title: A Unified MRC Framework for Named Entity Recognition** <br>
+**A Unified MRC Framework for Named Entity Recognition** <br>
 Preprint. [arXiv](https://arxiv.org/abs/1910.11476)<br>
 **Authors:** Xiaoya Li\*, Jingrong Feng\*, Yuxian Meng, Qinghong Han, Fei Wu, Jiwei Li<br>
 **BibTex:** 
@@ -17,9 +17,11 @@ For any question, feel free to contact xiaoya_li@shannonai.com<br>
 
 ![docs/overview.png](./docs/overview.png)
 
+## Overview 
+
 ## Contents
-1. [Introduction](#introduction)
-2. [Dependencies](#dependencies)
+1. [Data Preparation](#data-preparation)
+1. [Dependencies](#dependencies)
 2. [Usage](#usage)
 3. [Results on Flat NER](#results-on-flat-ner)
 4. [Results on Nest NER](#results-on-nest-ner)
@@ -27,7 +29,6 @@ For any question, feel free to contact xiaoya_li@shannonai.com<br>
 6. [FAQ](#faq)
 
 
-## Introduction 
 
 ## Depndencies 
 
@@ -35,8 +36,9 @@ For any question, feel free to contact xiaoya_li@shannonai.com<br>
 
 ## Results on Flat NER 
 
-
 ## Results on Nested NER 
+
+
 
 ## Updates 
  

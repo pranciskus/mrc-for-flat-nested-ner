@@ -122,12 +122,7 @@ def length_stat(data_repo, data_sign, bert_model):
 
 
 if __name__ == "__main__":
-    # data_path = "/data/nfsdata2/xiaoya/data_repo/query_ner/eng_onto/train.ner"
-    # entity_cate = stat_entity_category(data_path)
-
-    data_repo = "/data/nfsdata2/xiaoya/data_repo/query_ner/zh_onto"
-    # data_repo = "/data/nfsdata/data/yuxian/datasets/genia"
-    # data_sign = "conll03"
+    data_repo = "zh_onto"
     data_sign = "zh_onto"
     bert_model = "/data/nfsdata/nlp/BERT_BASE_DIR/cased_L-24_H-1024_A-16"
     length_stat(data_repo, data_sign, bert_model) 
