@@ -42,7 +42,7 @@ from layers.bert_basic_model import BertModel, PreTrainedBertModel, BertConfig
 
 
 
-class BertQueryNER(nn.Module):
+class BertMRCNER(nn.Module):
     """
     Desc:
         BERT model for question answering (span_extraction)
@@ -69,7 +69,7 @@ class BertQueryNER(nn.Module):
         if "start_positon" or "end_positions" is None 
     """
     def __init__(self, config):
-        super(BertQueryNER, self).__init__()
+        super(BertMRCNER, self).__init__()
         bert_config = BertConfig.from_dict(config.bert_config.to_dict()) 
         self.bert = BertModel(bert_config)
 

@@ -31,7 +31,6 @@ from layers.bert_layernorm import BertLayerNorm
 
 
 
-
 class BertTagger(nn.Module):
     def __init__(self, config, num_labels=5):
         super(BertTagger, self).__init__()
@@ -43,12 +42,7 @@ class BertTagger(nn.Module):
         self.hidden_size = config.hidden_size 
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
 
-        # if config.classifier_sign == "single_linear":
-        #     self.classifier = SingleLinearClassifier(config.hidden_size, self.num_labels)
-        # elif config.classifier_sign == "multi_nonlinear":
         self.classifier = MultiNonLinearClassifier(config.hidden_size, self.num_labels)
-        # else:
-        #     raise ValueError 
         self.bert = self.bert.from_pretrained(config.bert_model, )
 
     def forward(self, input_ids, token_type_ids=None, attention_mask=None, 

@@ -43,7 +43,7 @@ from pytorch_pretrained_bert.file_utils import PYTORCH_PRETRAINED_BERT_CACHE
 from data.model_config import Config 
 from data.ner_dataset_processor import * 
 from models.bert_tagger import BertTagger 
-from data.ner_data_utils import convert_examples_to_features  
+from data.tagger_ner_data_utils import convert_examples_to_features  
 from utils.ner_evaluate import compute_performance 
 
 
@@ -83,8 +83,6 @@ def args_parser():
     if args.cuda:
         torch.cuda.manual_seed_all(args.seed)
 
-    # if os.path.exists(args.output_dir) and os.listdir(args.output_dir) and args.do_train:
-    #     raise ValueError 
     os.makedirs(args.output_dir, exist_ok=True)
 
     return args

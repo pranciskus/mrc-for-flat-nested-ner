@@ -44,12 +44,12 @@ from pytorch_pretrained_bert.file_utils import PYTORCH_PRETRAINED_BERT_CACHE
 
 
 from data.model_config import Config 
-from data.query_ner_data_processor import * 
-from data.query_ner_data_utils import convert_examples_to_features
-from models.bert_mrc_ner import BertQueryNER
+from data.ner_data_processor import * 
+from data.mrc_ner_data_utils import convert_examples_to_features
+from models.bert_mrc_ner import BertMRCNER
 from layers.math_funcs import sigmoid2label
 from utils.bert_tokenizer import BertTokenizer4Tagger 
-from utils.query_ner_evaluate  import query_ner_compute_performance
+from utils.mrc_ner_evaluate  import query_ner_compute_performance
 
 
 def args_parser():
@@ -136,9 +136,7 @@ def load_data(config):
     train_ner_cate = torch.tensor([f.ner_cate for f in train_features], dtype=torch.long)
     train_start_pos = torch.tensor([f.start_position for f in train_features], dtype=torch.long)
     train_end_pos = torch.tensor([f.end_position for f in train_features], dtype=torch.long)
-    # train_data = TensorDataset(train_input_ids, train_input_mask, train_segment_ids, train_label_ids)
     train_data = TensorDataset(train_input_ids, train_input_mask, train_segment_ids, train_start_pos, train_end_pos, train_ner_cate)
-    # train_sampler = DistributedSampler(train_data)
     train_sampler = RandomSampler(train_data)
 
 
@@ -178,16 +176,14 @@ def load_data(config):
 
 
 def load_model(config, num_train_steps, label_list):
-    # device = torch.device(torch.cuda.is_available())
     device = torch.device("cuda") 
     n_gpu = torch.cuda.device_count()
-    model = BertQueryNER(config, ) 
-    # model = BertForTagger.from_pretrained(config.bert_model, num_labels=13)
+    model = BertMRCNER(config, ) 
     model.to(device)
     if n_gpu > 1:
         model = torch.nn.DataParallel(model)
 
-    # prepare  optimzier 
+    # prepare optimzier 
     param_optimizer = list(model.named_parameters())
 
         
@@ -238,7 +234,7 @@ def train(model, optimizer, train_dataloader, dev_dataloader, test_dataloader, c
 
             model.zero_grad()
             loss.backward()
-            # nn.utils.clip_grad_norm_(parameters=model.parameters(), max_norm=config.clip_grad) 
+            nn.utils.clip_grad_norm_(parameters=model.parameters(), max_norm=config.clip_grad) 
 
             tr_loss += loss.item()
 
@@ -247,7 +243,6 @@ def train(model, optimizer, train_dataloader, dev_dataloader, test_dataloader, c
 
             if (step + 1) % config.gradient_accumulation_steps == 0:
                 optimizer.step()
-                # optimizer.zero_grad()
                 global_step += 1 
 
             if nb_tr_steps % config.checkpoint == 0:
@@ -346,8 +341,6 @@ def eval_checkpoint(model_object, eval_dataloader, config, \
 
         start_label = np.argmax(start_logits, axis=-1).tolist()  
         end_label = np.argmax(end_logits, axis=-1).tolist()
-        # start_label = sigmoid2label(start_logits)
-        # end_label = sigmoid2label(end_logits)
 
         start_pos = start_pos.tolist()
         end_pos = end_pos.tolist()
