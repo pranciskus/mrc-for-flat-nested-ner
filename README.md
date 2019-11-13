@@ -20,12 +20,12 @@ For any question, please feel free to contact xiaoya_li@shannonai.com or post Gi
 ## Overview 
 
 ## Contents
-3. [Experimental Results](#experimental-results)
-  1. [Flat NER](##flat-ner) 
-  2. [Nested NER](##nested-ner)
-1. [Details about datasets](#details-about-datasets)
-1. [Dependencies](#dependencies)
-2. [Usage](#usage)
+1. [Experimental Results](#experimental-results)
+  * [Flat NER](##flat-ner) 
+  * [Nested NER](##nested-ner)
+2. [Datasets Preparation](#datasets-preparation)
+3. [Dependencies](#dependencies)
+4. [Usage](#usage)
 5. [Updates](#updates)
 6. [FAQ](#faq)
 
@@ -53,7 +53,7 @@ Evaluations are conducted on the widely-used `ACE 2004`, `ACE 2005`, `GENIA`, `K
 | Our method | **85.98** | **86.88** | **83.75** | **80.97** | 
 |  | **(+1.28)** | **(+2.55)** | **(+5.44)** | **(+6.37)** | 
 
-## Details about datasets
+## Datasets Preparation
 
 We release preprocessed and source datasets for both flat and nested NER benchmarks. <br>
 
